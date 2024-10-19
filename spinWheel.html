@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spin Wheel</title>
+    <style>
+      body {
+        background: #02033b;
+        color: #fff;
+      }
+      * {
+        padding: 0;
+        box-sizing: border-box;
+      }
+      canvas {
+        outline: 1px solid #00ff73;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+
+
+    <script>
+      const canvas = document.querySelector("canvas");
+      canvas.width = 700;
+      canvas.height = 500;
+
+
+      let data = [
+        { id: 1, color: "#ff0000", name: "Segment 1" },
+        { id: 2, color: "#00ff00", name: "Segment 2" },
+        { id: 3, color: "#0000ff", name: "Segment 3" },
+        { id: 4, color: "#ff0000", name: "Segment 4" },
+        { id: 5, color: "#00ff00", name: "Segment 5" },
+        { id: 6, color: "#0000ff", name: "Segment 6" },
+        { id: 7, color: "#ff0000", name: "Segment 7" },
+        { id: 8, color: "#00ff00", name: "Segment 8" },
+        { id: 9, color: "#0000ff", name: "Segment 9" },
+        { id: 10, color: "#ff0000", name: "Segment 10" },
+        { id: 11, color: "#00ff00", name: "Segment 11" },
+        { id: 12, color: "#0000ff", name: "Segment 12" },
+      ];
+
+
+      let data_l = data.length;
+      let c = canvas.getContext("2d");
+
+
+      let diff_val = (Math.PI * 2) / data_l;
+      console.log(diff_val);
+      let start_val = 0;
+
+
+      for (let i = 0; i < data.length; i++) {
+        let end_val = start_val + diff_val;
+
+
+        const x = 150; // x coordinate of the center
+        const y = 150; // y coordinate of the center
+        // Draw the arc
+        c.beginPath();
+        c.moveTo(x, y); // Move to the center point
+        c.arc(x, x, 90, start_val, end_val);
+        c.strokeStyle = data[i].color;
+        c.lineTo(x, y); // Draw a line back to the center
+        c.fillStyle = data[i].color;
+        c.lineWidth = 2;
+        // c.stroke();
+        c.fill();
+
+
+        // // Draw the label
+        const mid_angle = (start_val + end_val) / 2;
+        const label_x = 150 + Math.cos(mid_angle) * 30; // Position slightly further out
+        const label_y = 150 + Math.sin(mid_angle) * 30; // Position slightly further out
+
+
+        // // Save the current context
+        c.save();
+        c.translate(label_x, label_y); // Move to the label position
+        c.rotate(mid_angle); // Rotate to match the segment angle
+        c.fillStyle = "#ffffff";
+        c.fillText(data[i].name, 0, 0); // Draw the text at the rotated position
+        c.restore(); // Restore the context to avoid further transformations
+
+
+        // // Update the start angle for the next segment
+        start_val = end_val;
+      }
+
+
+     
+
+
+        // Set the position, radius, start angle, and end angle
+        // const x = 100; // x coordinate of the center
+        // const y = 100; // y coordinate of the center
+        // const radius = 50; // radius of the arc
+        // const startAngle = 0; // start angle in radians (0 radians is the positive x-axis)
+        // const endAngle = Math.PI / 2; // end angle in radians (90 degrees)
+
+
+        // c.beginPath();
+        // c.moveTo(x, y); // Move to the center point
+        // c.arc(x, y, radius, startAngle, endAngle);
+        // c.lineTo(x, y); // Draw a line back to the center
+        // c.fillStyle = 'red'; // Set fill color
+        // c.fill(); // Fill the arc
+        // c.stroke(); // Optional: outline the arc
+    </script>
+  </body>
+</html>
+
+
+

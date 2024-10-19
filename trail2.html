@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        /* Set the background color to a semi-transparent blue */
+        background: #0077ff77;
+      }
+      * {
+        /* Remove default margin and padding for all elements */
+        margin: 0;
+        padding: 0;
+        /* Use border-box for consistent sizing */
+        box-sizing: border-box;
+      }
+      #canvas {
+        /* Add a red border around the canvas */
+        border: 1px solid #ff0000a6;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Canvas element where shapes will be drawn -->
+    <canvas id="canvas"></canvas>
+    <script>
+      // Select the canvas element from the DOM
+      var can = document.querySelector("#canvas");
+      console.log(can); // Log the canvas element to the console for debugging
+
+
+      // Set the dimensions of the canvas
+      can.width = 400; // Width of the canvas in pixels
+      can.height = 700; // Height of the canvas in pixels
+
+
+      // Get the 2D drawing context for the canvas
+      let can_Ctx = can.getContext("2d");
+
+
+      // Begin a new path for drawing
+      can_Ctx.beginPath();
+
+
+      // Draw a line from point (20, 40) to (120, 50)
+      can_Ctx.moveTo(20, 40); // Move to starting point
+      can_Ctx.lineTo(120, 50); // Draw line to (120, 50)
+      can_Ctx.lineWidth = 0.5; // Set line width
+      can_Ctx.strokeStyle = "red"; // Set stroke color to red
+      can_Ctx.stroke(); // Render the line
+
+
+      // Begin a new path to draw a circle
+      can_Ctx.beginPath();
+      // Draw a circle at (120, 120) with radius 9
+      // Arguments: (x, y, radius, startAngle, endAngle, anticlockwise)
+      can_Ctx.arc(120, 120, 9, 0, 3.14 * 2); // Full circle
+      can_Ctx.strokeStyle = "#fff"; // Set stroke color to white
+      can_Ctx.stroke(); // Outline the circle
+      can_Ctx.fillStyle = "blue"; // Set fill color to blue
+      can_Ctx.fill(); // Fill the circle
+
+
+      // Begin a new path to draw a rectangle
+      can_Ctx.beginPath();
+      can_Ctx.lineWidth = 12; // Set line width for the rectangle
+      // Draw a rectangle at (120, 120) with width 150 and height 20
+      // Arguments: (x, y, width, height)
+      can_Ctx.rect(120, 120, 150, 20);
+      can_Ctx.strokeStyle = "#ff0"; // Set stroke color to yellow
+      can_Ctx.stroke(); // Outline the rectangle
+
+
+      // Uncomment to load and draw an image (currently commented out)
+      // const img = new Image();
+      // img.src = "./img.jpg"; // Set the source of the image
+      // img.onload = () => {
+      //   can_Ctx.drawImage(img, 20, 10); // Draw the image at (20, 10)
+      // };
+
+
+      // Begin a new path to draw an arc
+      can_Ctx.beginPath();
+      // Draw an arc at (120, 400) with radius 50
+      // Arguments: (x, y, radius, startAngle, endAngle, anticlockwise)
+      can_Ctx.arc(120, 400, 50, 0, 5, false); // Full arc
+      can_Ctx.stroke(); // Outline the arc
+
+
+      // Begin a new path to draw a cubic Bezier curve
+      can_Ctx.beginPath();
+      can_Ctx.moveTo(120, 400); // Move to starting point
+      // Define control points and end point for the curve
+      // Arguments: (cp1x, cp1y, cp2x, cp2y, x, y)
+      can_Ctx.bezierCurveTo(450, 500, 23, 20, 10, 15);
+      can_Ctx.stroke(); // Render the curve
+
+
+      // Begin a new path to draw a quadratic Bezier curve
+      can_Ctx.beginPath();
+      can_Ctx.moveTo(500, 400); // Move to starting point
+      can_Ctx.strokeStyle = "blue"; // Set stroke color to blue
+      // Define control point and end point for the curve
+      // Arguments: (cpx, cpy, x, y)
+      can_Ctx.quadraticCurveTo(20, 20, 200, 500);
+      can_Ctx.stroke(); // Render the curve
+
+
+      // Begin a new path to draw an ellipse
+      can_Ctx.beginPath();
+      // Draw an ellipse centered at (50, 120)
+      // Arguments: (x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise)
+      can_Ctx.ellipse(50, 120, 22, 42, 50, 0, 6);
+      can_Ctx.fill(); // Fill the ellipse
+
+
+      // Begin a new path to draw a triangular shape
+      can_Ctx.beginPath();
+      can_Ctx.moveTo(200, 350); // Move to first point
+      can_Ctx.lineTo(0, 700); // Draw line to second point
+      can_Ctx.lineTo(0, 0); // Draw line to third point
+      can_Ctx.closePath(); // Close the path to form a triangle
+      can_Ctx.fill(); // Fill the triangular shape
+
+
+      // Begin another path to draw a second triangular shape
+      can_Ctx.beginPath();
+      can_Ctx.moveTo(200, 350); // Move to first point
+      can_Ctx.lineTo(400, 700); // Draw line to second point
+      can_Ctx.lineTo(400, 0); // Draw line to third point
+      can_Ctx.closePath(); // Close the path to form another triangle
+      can_Ctx.fill(); // Fill the triangular shape
+
+
+      // Begin a new path to draw another quadratic Bezier curve
+      can_Ctx.beginPath();
+      can_Ctx.moveTo(120, 120); // Move to starting point
+      // Define control point and end point for the curve
+      // Arguments: (cpx, cpy, x, y)
+      can_Ctx.quadraticCurveTo(3, 12, 25, 22);
+      can_Ctx.stroke(); // Render the curve
+    </script>
+  </body>
+</html>
+
+
+
